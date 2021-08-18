@@ -8,6 +8,8 @@ var box1, pig1;
 var backgroundImg,platform;
 var bird, slingShot;
 
+var gameState = "onSling"
+
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
 }
@@ -68,12 +70,14 @@ function draw(){
 }
 
 function mouseDragged(){
+    if(gameState !== "offSling")
     Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState="offSling";
 }
 function keyPressed(){
     if(keyCode===32)
